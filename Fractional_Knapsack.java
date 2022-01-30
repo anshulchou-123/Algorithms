@@ -24,14 +24,51 @@ Now if bag is of weight 5kg its optimal to choose the last 5 1kg weight with max
 */
 import java.util.*;
 import java.io.*;
+
 public class Fractional_Knapsack {
+    static class Item{
+        int w,v;
+        public Item(int w,int v){
+            this.w=w;
+            this.v=v;
+        }
+    }
+    static class comparator implements Comparator<Item>{
+        public int compare(Item a,Item b){
+            return a.v/(a.w*1.0)-b.v/(b.w*1.0)>=0?1:-1;
+        }
+    }
     public static void main(String[]  args){
         Scanner s=new Scanner(System.in);
         int n=s.nextInt();
-        int[] a=new int[n];
+        int[] w=new int[n];
+        int[] v=new int[n];
         for(int i=0;i<n;i++){
-            a[i]=s.nextInt();
+            w[i]=s.nextInt();
         }
-
+        for(int i=0;i<n;i++){
+            v[i]=s.nextInt();
+        }
+        TreeSet<Item> set=new TreeSet<>(new comparator());
+        for(int i=0;i<n;i++){
+            set.add(new Item(w[i],v[i]));
+        }
+        int W=s.nextInt();
+        double ans=0;
+        int rem=W;
+        while(!set.isEmpty()){
+            Item i=set.pollLast();
+            System.out.println(i.v+" "+i.w);
+            if(rem>=i.w){
+                ans+=(double)i.v;
+                rem-=i.w;
+            }else{
+                ans+=(i.v/(1.0*i.w))*rem;
+                System.out.println((i.v/(1.0*i.w))*rem);
+                break;
+            }
+        }
+        System.out.println(ans);
+        s.close();
     }
 }

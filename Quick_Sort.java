@@ -17,7 +17,7 @@ class Quick_Sort{
     }
     static void quick_sort(int[] a,int l,int r){//sort range l to r
             if(r<=l)return ;
-            int index=find_index(a,l,r);//places first element at its current position and all element less then to at itss left and greater then it to right
+            int index=find_index(a,l,r);//places first element at its current position and all element less then to at its left and greater then it to right
             System.out.println(index);
             for(int i=0;i<a.length;i++){//checking the elements after a call
                 System.out.print(a[i]+" ");
@@ -45,3 +45,17 @@ class Quick_Sort{
         a[j]=temp;
     }
 }
+/*
+Best case time complexity of this algorithm is O(nlogn) when the first element is the median of the range l to r
+                    sort(l, l+1,.....,r)  ->O(n)
+               first pivot should be present at n/2
+            sort(l, .... n/2)   sort(n/2+1,...,n-1) O(n)
+                                  n
+                         /               \
+                      1-n/2              n/2+1-n
+                    /     \              /      \
+                   1-n/4  n/4+1-n/2   n/2-3n/4 3n/4+1-n
+            Height of the tree is log2(n) and at each level O(n) time is required to find pivot so best time complexity is O(nlogn)
+
+Worst Case is when the array is already sorted, then O(n+n-1+n-2+n-3+....+1) time is required to sort the array.O(n*(n+1)/2)->O(n*n)
+*/ 

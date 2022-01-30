@@ -9,7 +9,7 @@ Kahn's Algo:
    ->Store all node with zero indegree in a queue
    ->Take a node from queue and decrease indegree of all neighbouring node by 1, and if any node'sindegree gets 0 store it in the queue
    ->If the queue is not empty repeat step 1 and 2
-   ->At end if count  value if not equal to n it means there is a cycle in the graph.
+   ->At end if count  value is not equal to n it means there is a cycle in the graph.
 
 */
 
